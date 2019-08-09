@@ -39,11 +39,12 @@ class SearchResultsController: UITableViewController {
             return
         }
         let artist = dataSource.artist(at: selectedindexPath)
-//        artist.albums = Stub.albums
-
         let albumListController = segue.destination as! AlbumListController
-//        albumListController.artist = artist
-
+        
+        ItunesClient.lookupArtist(by: artist.id) { (artist, error) in
+            albumListController.artist = artist
+            albumListController.tableView.reloadData()
+        }
     }
 }
 

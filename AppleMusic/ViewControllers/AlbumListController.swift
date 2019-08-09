@@ -14,15 +14,19 @@ class AlbumListController: UITableViewController {
         static let AlbumCellHeight: CGFloat = 80
     }
     
-    var artist: Artist!
-    lazy var dataSource: AlbumListDataSource = {
-        return AlbumListDataSource(albums: self.artist.albums)
-    }()
+    var dataSource = AlbumListDataSource(albums: [])
+    
+    var artist: Artist? {
+        didSet {
+            self.title = artist?.name
+            dataSource.update(with: artist!.albums)
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = artist.name
         tableView.dataSource = dataSource
     }
 

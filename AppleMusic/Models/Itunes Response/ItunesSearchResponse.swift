@@ -10,5 +10,5 @@ import Foundation
 
 struct ItunesSearchResponse: Decodable {
     let resultCount: Int
-    let results: [ItunesArtist]
+    let results: [ItunesArtistResponse]
 }

@@ -13,15 +13,13 @@ class ItunesClient {
     class func searchArtist(by term: String, completion: @escaping ([Artist] , ItunesError?) -> Void) {
         
         let request = Itunes.search(term: term, media: .music(entity: .musicArtist, attribute: .artistTerm)).request
-        var artists: [Artist] = []
         
         taskForGETRequest(request: request, response: ItunesSearchResponse.self) { (response, error) in
             if let response = response {
                 let resultes = response.results
-                resultes.forEach({ (itunesArtist) in
-                    let artist  = Artist(id: itunesArtist.artistId, name: itunesArtist.artistName, primaryGenre: itunesArtist.primaryGenreName, albums: [])
-                    artists.append(artist)
-                })
+                
+                let artists = resultes.compactMap { Artist(id: $0.artistId, name: $0.artistName, primaryGenre: $0.primaryGenreName, albums: []) }
+                
                 completion(artists, nil)
             } else {
                 completion([], .dataDecodeFailure)
@@ -29,15 +27,40 @@ class ItunesClient {
         }
     }
     
-    class func getArtistAlbums(by id: Int, completion: @escaping ([Album], ItunesError?) -> Void) {
+    class func lookupArtist(by id: Int, completion: @escaping (Artist?, ItunesError?) -> Void) {
         let request = Itunes.lookup(id: id, entity: MusicEntity.album).request
         
         taskForGETRequest(request: request, response: AlbumLookupResponse.self) { (response, error) in
             if let response = response {
                 let results = response.results
-                // TODO: - finish to get albums
+                guard let artistInfo = results.first else {
+                    completion(nil, .dataDecodeFailure)
+                    return
+                }
+                let artist = Artist(id: artistInfo.artistID, name: artistInfo.artistName, primaryGenre: artistInfo.primaryGenreName, albums: [])
+                
+                let albumsInfo = results[1..<results.count]
+                
+                let albums = albumsInfo.compactMap({ (albumInfo) -> Album in
+                    var album: Album?
+                    
+                    let formatter = DateFormatter()
+                    formatter.locale = Locale(identifier: "en_US_POSIX")
+                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                    
+                    if let id = albumInfo.collectionID, let name = albumInfo.collectionName, let censoredName = albumInfo.collectionCensoredName, let artworkUrl = albumInfo.artworkUrl100, let numberOfTracks = albumInfo.trackCount, let releaseDateString = albumInfo.releaseDate, let isExplicitString = albumInfo.collectionExplicitness,let releaseDate = formatter.date(from: releaseDateString) {
+                        let artistName = albumInfo.artistName
+                        let primaryGenre = albumInfo.primaryGenreName
+                        let isExplicit = isExplicitString == "notExplicit" ? false : true
+                        
+                        album = Album(id: id, artistName: artistName, name: name, censoredName: censoredName, artworkUrl: artworkUrl, isExplicit: isExplicit, numberOfTracks: numberOfTracks, releaseDate: releaseDate, primaryGenre: primaryGenre)
+                    }
+                    return album!
+                })
+                artist.albums = albums
+                completion(artist, nil)
             } else {
-                completion([], .dataDecodeFailure)
+                completion(nil, .dataDecodeFailure)
             }
         }
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ItunesArtist: Decodable {
+struct ItunesArtistResponse: Decodable {
     let artistName: String
     let artistId: Int
     let primaryGenreId: Int

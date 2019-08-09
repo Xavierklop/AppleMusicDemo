@@ -21,8 +21,10 @@ class RootViewController: UIViewController {
 //
 //        let lookupEndpoint = Itunes.lookup(id: 159260351, entity: MusicEntity.album)
 //        print(lookupEndpoint.request)
-        ItunesClient.getArtistAlbums(by: 159260351) { (results, error) in
+        ItunesClient.lookupArtist(by: 159260351) { (result, error) in
             print("test")
+            print(result?.id)
+            print(result?.albums[0].censoredName)
         }
     }
 
