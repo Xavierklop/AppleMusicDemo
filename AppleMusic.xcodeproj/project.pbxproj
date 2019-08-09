@@ -37,7 +37,6 @@
 		759DF8BD22F80B9200C5B2C0 /* ItunesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8BC22F80B9200C5B2C0 /* ItunesError.swift */; };
 		759DF8C022F84C5500C5B2C0 /* ItunesSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8BF22F84C5500C5B2C0 /* ItunesSearchResponse.swift */; };
 		759DF8C222F8586400C5B2C0 /* ItunesArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8C122F8586400C5B2C0 /* ItunesArtist.swift */; };
-		759DF8C422F8DFE600C5B2C0 /* ItunesAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8C322F8DFE600C5B2C0 /* ItunesAlbum.swift */; };
 		759DF8C622F8FC7300C5B2C0 /* AlbumLookupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8C522F8FC7300C5B2C0 /* AlbumLookupResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +73,6 @@
 		759DF8BC22F80B9200C5B2C0 /* ItunesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesError.swift; sourceTree = "<group>"; };
 		759DF8BF22F84C5500C5B2C0 /* ItunesSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesSearchResponse.swift; sourceTree = "<group>"; };
 		759DF8C122F8586400C5B2C0 /* ItunesArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesArtist.swift; sourceTree = "<group>"; };
-		759DF8C322F8DFE600C5B2C0 /* ItunesAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAlbum.swift; sourceTree = "<group>"; };
 		759DF8C522F8FC7300C5B2C0 /* AlbumLookupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumLookupResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +201,6 @@
 			children = (
 				759DF8BF22F84C5500C5B2C0 /* ItunesSearchResponse.swift */,
 				759DF8C122F8586400C5B2C0 /* ItunesArtist.swift */,
-				759DF8C322F8DFE600C5B2C0 /* ItunesAlbum.swift */,
 				759DF8C522F8FC7300C5B2C0 /* AlbumLookupResponse.swift */,
 			);
 			path = "Itunes Response";
@@ -296,7 +293,6 @@
 				753A5FC222EB2091005EDCC8 /* AlbumDetailDataSource.swift in Sources */,
 				759DF8C222F8586400C5B2C0 /* ItunesArtist.swift in Sources */,
 				759DF8BB22F7951E00C5B2C0 /* ItunesClient.swift in Sources */,
-				759DF8C422F8DFE600C5B2C0 /* ItunesAlbum.swift in Sources */,
 				755BFF8B22E7A143006F924F /* SearchResultsController.swift in Sources */,
 				755BFF9022E912DE006F924F /* AlbumListController.swift in Sources */,
 				755BFF8322E65839006F924F /* Genre.swift in Sources */,

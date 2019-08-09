@@ -12,6 +12,7 @@ class Artist {
     let id: Int
     let name: String
     let primaryGenre: String
+    // MARK: - finally we don't need this 
     var albums: [Album]
     
     init(id: Int, name: String, primaryGenre: String, albums: [Album]) {

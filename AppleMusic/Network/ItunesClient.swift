@@ -10,38 +10,33 @@ import Foundation
 
 class ItunesClient {
     
-    class func searchArtist(by term: String, completion: @escaping ([ItunesArtist] , ItunesError?) -> Void) {
+    class func searchArtist(by term: String, completion: @escaping ([Artist] , ItunesError?) -> Void) {
         
         let request = Itunes.search(term: term, media: .music(entity: .musicArtist, attribute: .artistTerm)).request
+        var artists: [Artist] = []
         
         taskForGETRequest(request: request, response: ItunesSearchResponse.self) { (response, error) in
             if let response = response {
-                completion(response.results, nil)
+                let resultes = response.results
+                resultes.forEach({ (itunesArtist) in
+                    let artist  = Artist(id: itunesArtist.artistId, name: itunesArtist.artistName, primaryGenre: itunesArtist.primaryGenreName, albums: [])
+                    artists.append(artist)
+                })
+                completion(artists, nil)
             } else {
                 completion([], .dataDecodeFailure)
             }
         }
     }
     
-    class func getArtistAlbums(by id: Int, completion: @escaping ([ArtistOrAlbum], ItunesError?) -> Void) {
+    class func getArtistAlbums(by id: Int, completion: @escaping ([Album], ItunesError?) -> Void) {
         let request = Itunes.lookup(id: id, entity: MusicEntity.album).request
-        
-        // test
-        print(request.url)
         
         taskForGETRequest(request: request, response: AlbumLookupResponse.self) { (response, error) in
             if let response = response {
                 let results = response.results
-                
-                //test
-                print("have response")
-                
-                completion(results, nil)
+                // TODO: - finish to get albums
             } else {
-                // test
-                print("no response")
-                print(error.debugDescription)
-                
                 completion([], .dataDecodeFailure)
             }
         }

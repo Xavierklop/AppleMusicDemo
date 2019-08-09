@@ -10,13 +10,13 @@ import UIKit
 
 class SearchResultsDataSource: NSObject, UITableViewDataSource {
     
-    private var data = [ItunesArtist]()
+    private var data = [Artist]()
 
     override init() {
         super.init()
     }
     
-    func update(with artits: [ItunesArtist]) {
+    func update(with artits: [Artist]) {
         data = artits
     }
     
@@ -33,13 +33,13 @@ class SearchResultsDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath)
         let artist = data[indexPath.row]
-        cell.textLabel?.text = artist.artistName
+        cell.textLabel?.text = artist.name
         
         return cell
     }
     
     // MARK: - Helper Methods
-    func artist(at indexPath: IndexPath) -> ItunesArtist {
+    func artist(at indexPath: IndexPath) -> Artist {
         return data[indexPath.row]
     }
 }

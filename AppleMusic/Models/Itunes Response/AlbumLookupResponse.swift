@@ -8,27 +8,28 @@
 
 import Foundation
 
-struct AlbumLookupResponse: Decodable {
+struct AlbumLookupResponse: Codable {
     let resultCount: Int
-    let results: [ArtistOrAlbum]
+    let results: [AlbumResultResponse]
 }
 
-enum ArtistOrAlbum: Decodable {
-    case artist(ItunesArtist)
-    case album(ItunesAlbum)
-}
-
-extension ArtistOrAlbum {
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        do {
-            self = try .artist(container.decode(ItunesArtist.self))
-        } catch {
-            do {
-                self = try .album(container.decode(ItunesAlbum.self))
-            } catch {
-                throw DecodingError.typeMismatch(ArtistOrAlbum.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Encoded payload conflicts with expected type, (ItunesArtist or ArtistAlbum)") )
-            }
-        }
+struct AlbumResultResponse: Codable {
+    let artistName: String
+    let artistID: Int
+    let primaryGenreName: String
+    let primaryGenreID: Int?
+    let collectionType: String?
+    let collectionID: Int?
+    let collectionName, collectionCensoredName: String?
+    let artworkUrl100: String?
+    let collectionExplicitness: String?
+    let releaseDate: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case artistID = "artistId"
+        case primaryGenreID = "primaryGenreId"
+        case collectionID = "collectionId"
+        case collectionName, collectionCensoredName, artworkUrl100, collectionExplicitness, releaseDate,artistName, primaryGenreName, collectionType
+        
     }
 }
