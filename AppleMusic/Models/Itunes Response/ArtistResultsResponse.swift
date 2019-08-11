@@ -1,5 +1,5 @@
 //
-//  AlbumResultResponse.swift
+//  ArtistResultsResponse.swift
 //  AppleMusic
 //
 //  Created by Hao Wu on 09.08.19.
@@ -8,11 +8,10 @@
 
 import Foundation
 
-struct AlbumResultResponse: Codable {
+struct ArtistResultsResponse: Codable {
     let artistName: String
     let artistID: Int
     let primaryGenreName: String
-    let primaryGenreID: Int?
     let collectionType: String?
     let collectionID: Int?
     let collectionName, collectionCensoredName: String?
@@ -23,7 +22,6 @@ struct AlbumResultResponse: Codable {
     
     enum CodingKeys: String, CodingKey {
         case artistID = "artistId"
-        case primaryGenreID = "primaryGenreId"
         case collectionID = "collectionId"
         case collectionName, collectionCensoredName, artworkUrl100, collectionExplicitness, releaseDate,artistName, primaryGenreName, collectionType, trackCount
     }

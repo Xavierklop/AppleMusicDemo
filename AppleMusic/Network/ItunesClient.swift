@@ -10,7 +10,7 @@ import Foundation
 
 class ItunesClient {
     
-    class func searchArtist(by term: String, completion: @escaping ([Artist] , ItunesError?) -> Void) {
+    class func searchArtist(by term: String, completion: @escaping ([Artist] , ItunesClientError?) -> Void) {
         
         let request = Itunes.search(term: term, media: .music(entity: .musicArtist, attribute: .artistTerm)).request
         
@@ -27,10 +27,10 @@ class ItunesClient {
         }
     }
     
-    class func lookupArtist(by id: Int, completion: @escaping (Artist?, ItunesError?) -> Void) {
+    class func lookupArtist(by id: Int, completion: @escaping (Artist?, ItunesClientError?) -> Void) {
         let request = Itunes.lookup(id: id, entity: MusicEntity.album).request
         
-        taskForGETRequest(request: request, response: AlbumLookupResponse.self) { (response, error) in
+        taskForGETRequest(request: request, response: ArtistLookupResponse.self) { (response, error) in
             if let response = response {
                 let results = response.results
                 guard let artistInfo = results.first else {
@@ -56,6 +56,7 @@ class ItunesClient {
                         album = Album(id: id, artistName: artistName, name: name, censoredName: censoredName, artworkUrl: artworkUrl, isExplicit: isExplicit, numberOfTracks: numberOfTracks, releaseDate: releaseDate, primaryGenre: primaryGenre)
                     }
                     return album!
+                    
                 })
                 artist.albums = albums
                 completion(artist, nil)
@@ -65,7 +66,38 @@ class ItunesClient {
         }
     }
     
-    class func taskForGETRequest<ResponseType: Decodable>(request: URLRequest, response: ResponseType.Type, completion: @escaping (ResponseType?, ItunesError?) -> Void) {
+    class func lookupAlbum(by id: Int, completion: @escaping (Album?, ItunesClientError?) -> Void) {
+        let request = Itunes.lookup(id: id, entity: MusicEntity.song).request
+        
+        taskForGETRequest(request: request, response: AlbumLookupResponse.self) { (response, error) in
+            if let response = response {
+                let results = response.results
+                guard let albumInfo = results.first else {
+                    completion(nil, .dataDecodeFailure)
+                    return
+                }
+                let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                
+                let date = formatter.date(from: albumInfo.releaseDate)!
+                let isExplicit = albumInfo.collectionExplicitness == "notExplicit" ? false : true
+                let album = Album(id: albumInfo.collectionID, artistName: albumInfo.artistName, name: albumInfo.collectionName, censoredName: albumInfo.collectionCensoredName, artworkUrl: albumInfo.artworkUrl100, isExplicit: isExplicit, numberOfTracks: albumInfo.trackCount, releaseDate: date, primaryGenre: albumInfo.primaryGenreName)
+                
+                let songsInfo = results[1..<results.count]
+                let songs = songsInfo.compactMap {
+                    Song(id: $0.trackID!, name: $0.trackName!, censoredName: $0.trackCensoredName!, trackTime: $0.trackTimeMillis!, isExplicit: $0.trackExplicitness == "notExplicit" ? false : true)
+                }
+                
+                album.songs = songs
+                completion(album, nil)
+            } else {
+                completion(nil, .dataDecodeFailure)
+            }
+        }
+    }
+    
+    class func taskForGETRequest<ResponseType: Decodable>(request: URLRequest, response: ResponseType.Type, completion: @escaping (ResponseType?, ItunesClientError?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -94,11 +126,6 @@ class ItunesClient {
                     completion(responseObject, nil)
                 }
             } catch {
-                // test
-                print("error is below")
-                print(error)
-                print("++++++++++++++++++")
-                
                 DispatchQueue.main.async {
                     completion(nil, .dataDecodeFailure)
                 }

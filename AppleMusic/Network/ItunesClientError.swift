@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ItunesError: Error {
+enum ItunesClientError: Error {
     case requestFailed
     case responseUnsuccessful
     case invalidData

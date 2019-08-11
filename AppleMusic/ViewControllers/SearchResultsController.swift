@@ -43,7 +43,6 @@ class SearchResultsController: UITableViewController {
         
         ItunesClient.lookupArtist(by: artist.id) { (artist, error) in
             albumListController.artist = artist
-            albumListController.tableView.reloadData()
         }
     }
 }

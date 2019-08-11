@@ -48,10 +48,11 @@ class AlbumListController: UITableViewController {
             return
         }
         let selectedAlbum = dataSource.album(at: selectedIndexPath)
-        selectedAlbum.songs = Stub.songs
-        
         let albumDetailController = segue.destination as! AlbumDetailController
-        albumDetailController.album = selectedAlbum
+        
+        ItunesClient.lookupAlbum(by: selectedAlbum.id) { (album, error) in
+            albumDetailController.album = album
+        }
         
     }
     
