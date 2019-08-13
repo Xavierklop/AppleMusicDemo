@@ -14,7 +14,9 @@ class AlbumListController: UITableViewController {
         static let AlbumCellHeight: CGFloat = 80
     }
     
-    var dataSource = AlbumListDataSource(albums: [])
+    lazy var dataSource: AlbumListDataSource = {
+        AlbumListDataSource(albums: [], tableView: self.tableView)
+    }()
     
     var artist: Artist? {
         didSet {

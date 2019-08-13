@@ -27,6 +27,23 @@ class ItunesClient {
         }
     }
     
+    class fileprivate func handleAlbumsInfo(_ albumInfo: ArtistResultsResponse) -> Album {
+        var album: Album?
+        
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        if let id = albumInfo.collectionID, let name = albumInfo.collectionName, let censoredName = albumInfo.collectionCensoredName, let artworkUrl = albumInfo.artworkUrl100, let numberOfTracks = albumInfo.trackCount, let releaseDateString = albumInfo.releaseDate, let isExplicitString = albumInfo.collectionExplicitness,let releaseDate = formatter.date(from: releaseDateString) {
+            let artistName = albumInfo.artistName
+            let primaryGenre = albumInfo.primaryGenreName
+            let isExplicit = isExplicitString == "notExplicit" ? false : true
+            
+            album = Album(id: id, artistName: artistName, name: name, censoredName: censoredName, artworkUrl: artworkUrl, isExplicit: isExplicit, numberOfTracks: numberOfTracks, releaseDate: releaseDate, primaryGenre: primaryGenre)
+        }
+        return album!
+    }
+    
     class func lookupArtist(by id: Int, completion: @escaping (Artist?, ItunesClientError?) -> Void) {
         let request = Itunes.lookup(id: id, entity: MusicEntity.album).request
         
@@ -42,20 +59,7 @@ class ItunesClient {
                 let albumsInfo = results[1..<results.count]
                 
                 let albums = albumsInfo.compactMap({ (albumInfo) -> Album in
-                    var album: Album?
-                    
-                    let formatter = DateFormatter()
-                    formatter.locale = Locale(identifier: "en_US_POSIX")
-                    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-                    
-                    if let id = albumInfo.collectionID, let name = albumInfo.collectionName, let censoredName = albumInfo.collectionCensoredName, let artworkUrl = albumInfo.artworkUrl100, let numberOfTracks = albumInfo.trackCount, let releaseDateString = albumInfo.releaseDate, let isExplicitString = albumInfo.collectionExplicitness,let releaseDate = formatter.date(from: releaseDateString) {
-                        let artistName = albumInfo.artistName
-                        let primaryGenre = albumInfo.primaryGenreName
-                        let isExplicit = isExplicitString == "notExplicit" ? false : true
-                        
-                        album = Album(id: id, artistName: artistName, name: name, censoredName: censoredName, artworkUrl: artworkUrl, isExplicit: isExplicit, numberOfTracks: numberOfTracks, releaseDate: releaseDate, primaryGenre: primaryGenre)
-                    }
-                    return album!
+                    return handleAlbumsInfo(albumInfo)
                     
                 })
                 artist.albums = albums
