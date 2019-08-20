@@ -13,7 +13,7 @@ class DownloadedSongController: UITableViewController {
     private struct Constants {
         static let SongCellHeight: CGFloat = 80
     }
-    
+    var dataController: DataController!
     var dataScource = DownloadedSongDataSource(songs: [])
     // TODO: - After coredata replace stub data
     var songs:[Song] = Stub.songs
@@ -23,6 +23,9 @@ class DownloadedSongController: UITableViewController {
         self.title = "Downloaded Songs"
         dataScource.update(with: songs)
         tableView.dataSource = dataScource
+        
+        // test
+        print(dataController)
     }
 
     // MARK: - Table View Delegate

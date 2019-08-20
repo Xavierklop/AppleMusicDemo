@@ -18,6 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         dataController.load()
+        let rootViewController = window?.rootViewController as! RootViewController
+        let tabBarController = rootViewController.tabBarController as! UITabBarController
+        let navigationController = tabBarController.viewControllers![1] as! UINavigationController
+        let downloadedSongVC = navigationController.topViewController as! DownloadedSongController
+        downloadedSongVC.dataController = dataController
+//        let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let downloadedSongVC = mainStoryboard.instantiateViewController(withIdentifier: "DownloadedSongController") as! DownloadedSongController
+//        downloadedSongVC.dataController = dataController
+//        print(downloadedSongVC.songs.count)
         
         return true
     }
