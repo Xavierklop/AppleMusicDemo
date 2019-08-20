@@ -15,6 +15,8 @@ class AlbumDetailController: UITableViewController {
     var album: Album? {
         didSet {
             if let album = album {
+                artworkView.image = album.artwork
+                self.title = album.name
                 configure(with: album)
                 dataSource.update(with: album.songs)
                 tableView.reloadData()
@@ -34,6 +36,7 @@ class AlbumDetailController: UITableViewController {
         if let album = album {
             configure(with: album)
         }
+        
     }
 
     func configure(with album: Album) {

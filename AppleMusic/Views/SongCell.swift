@@ -11,6 +11,7 @@ import UIKit
 class SongCell: UITableViewCell {
     
     static let reuseIdentifier = "SongCell"
+    
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songRunTimeLabel: UILabel!
     

@@ -70,26 +70,16 @@ class ItunesClient {
         }
     }
     
-    class func lookupAlbum(by id: Int, completion: @escaping (Album?, ItunesClientError?) -> Void) {
+    class func lookupAlbum(_ album: Album,by id: Int, completion: @escaping (Album?, ItunesClientError?) -> Void) {
         let request = Itunes.lookup(id: id, entity: MusicEntity.song).request
         
         taskForGETRequest(request: request, response: AlbumLookupResponse.self) { (response, error) in
             if let response = response {
                 let results = response.results
-                guard let albumInfo = results.first else {
-                    completion(nil, .dataDecodeFailure)
-                    return
-                }
-                let formatter = DateFormatter()
-                formatter.locale = Locale(identifier: "en_US_POSIX")
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-                
-                let date = formatter.date(from: albumInfo.releaseDate)!
-                let isExplicit = albumInfo.collectionExplicitness == "notExplicit" ? false : true
-                let album = Album(id: albumInfo.collectionID, artistName: albumInfo.artistName, name: albumInfo.collectionName, censoredName: albumInfo.collectionCensoredName, artworkUrl: albumInfo.artworkUrl100, isExplicit: isExplicit, numberOfTracks: albumInfo.trackCount, releaseDate: date, primaryGenre: albumInfo.primaryGenreName)
                 
                 let songsInfo = results[1..<results.count]
                 let songs = songsInfo.compactMap {
+                    // TODO: - change to fetch
                     Song(id: $0.trackID!, name: $0.trackName!, censoredName: $0.trackCensoredName!, trackTime: $0.trackTimeMillis!, isExplicit: $0.trackExplicitness == "notExplicit" ? false : true)
                 }
                 
