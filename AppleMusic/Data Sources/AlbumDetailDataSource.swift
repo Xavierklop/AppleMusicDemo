@@ -12,6 +12,9 @@ import UIKit
 class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     private var songs: [Song]
     
+    // test
+    var dataController: DataController!
+    
     init(songs: [Song]) {
         self.songs = songs
         super.init()
@@ -53,6 +56,24 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
 
 extension AlbumDetailDataSource: SongCellDelegate {
     func downloadTapped(_ cell: SongCell) {
-        print("work well")
+        if let indexPath = cell.indexPath {
+            let song = songs[indexPath.row]
+            let songEntity = SongEntity(context: dataController.viewContext)
+            songEntity.creationDate = Date()
+            songEntity.censoredName = song.censoredName
+            songEntity.name = song.name
+            songEntity.id = Int32(song.id)
+            songEntity.isExplicit = song.isExplicit
+            songEntity.trackTime = Int32(song.trackTime)
+            songEntity.artistName = song.artistName
+            songEntity.albumName = song.albumName
+            
+            do {
+                try dataController.viewContext.save()
+            } catch {
+                print("save song to core data failed, error: \(error.localizedDescription)")
+            }
+        
+        }
     }
 }

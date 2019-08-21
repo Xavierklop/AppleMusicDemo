@@ -18,6 +18,8 @@ class AlbumListController: UITableViewController {
         AlbumListDataSource(albums: [], tableView: self.tableView)
     }()
     
+    var dataController: DataController!
+    
     var artist: Artist? {
         didSet {
             self.title = artist?.name
@@ -52,6 +54,7 @@ class AlbumListController: UITableViewController {
         let selectedAlbum = dataSource.album(at: selectedIndexPath)
         let albumDetailController = segue.destination as! AlbumDetailController
         
+        albumDetailController.dataController = dataController
         ItunesClient.lookupAlbum(selectedAlbum ,by: selectedAlbum.id) { (album, error) in
             albumDetailController.album = album
         }

@@ -18,9 +18,15 @@ class RootViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tabBarVC = segue.destination as! UITabBarController
-        let navigationVC = tabBarVC.viewControllers?.last as! UINavigationController
-        let downloadedSongVC = navigationVC.topViewController as! DownloadedSongController
+        
+        let downloadNavigationVC = tabBarVC.viewControllers?.last as! UINavigationController
+        let searchNavigationVC = tabBarVC.viewControllers?.first as! UINavigationController
+        
+        let searchArtistVC = searchNavigationVC.topViewController as! SearchResultsController
+        let downloadedSongVC = downloadNavigationVC.topViewController as! DownloadedSongController
+        
         downloadedSongVC.dataController = dataController
+        searchArtistVC.dataController = dataController
     }
 }
 

@@ -20,11 +20,11 @@ struct Stub {
         return [eightyNine, red]
     }
     
-    static var songs: [Song] {
-        
-        let welcomeToNY = Song(id: 907242702, name: "Welcome To New York", censoredName: "Welcome To New York", trackTime: 212600, isExplicit: false)
-        let blankSpace =  Song(id: 907242703, name: "Blank Space", censoredName: "Blank Space", trackTime: 231833, isExplicit: false)
-        
-        return [welcomeToNY, blankSpace]
-    }
+//    static var songs: [Song] {
+//
+//        let welcomeToNY = Song(id: 907242702, name: "Welcome To New York", censoredName: "Welcome To New York", trackTime: 212600, isExplicit: false,)
+//        let blankSpace =  Song(id: 907242703, name: "Blank Space", censoredName: "Blank Space", trackTime: 231833, isExplicit: false)
+//
+//        return [welcomeToNY, blankSpace]
+//    }
 }

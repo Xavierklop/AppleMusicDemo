@@ -79,8 +79,7 @@ class ItunesClient {
                 
                 let songsInfo = results[1..<results.count]
                 let songs = songsInfo.compactMap {
-                    // TODO: - change to fetch
-                    Song(id: $0.trackID!, name: $0.trackName!, censoredName: $0.trackCensoredName!, trackTime: $0.trackTimeMillis!, isExplicit: $0.trackExplicitness == "notExplicit" ? false : true)
+                    Song(id: $0.trackID!, name: $0.trackName!, censoredName: $0.trackCensoredName!, trackTime: $0.trackTimeMillis!, isExplicit: $0.trackExplicitness == "notExplicit" ? false : true, artistName: $0.artistName, albumName: $0.collectionName)
                 }
                 
                 album.songs = songs

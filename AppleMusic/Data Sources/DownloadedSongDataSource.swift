@@ -12,6 +12,9 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     
     private var songs: [SongEntity]
     
+    var tableView: UITableView!
+    var dataController: DataController!
+    
     init(songs: [SongEntity]) {
         self.songs = songs
         super.init()
@@ -32,12 +35,41 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
         // TODO: - Add other properties after add coredata
         let song = songs[indexPath.row]
         cell.songTitleLabel.text = song.name
+        cell.albumTitleLabel.text = song.albumName
+        cell.artistNameLabel.text = song.artistName
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete: deleteDownloadedSong(at: indexPath)
+        default: ()
+        }
     }
     
     // Helper method
     func update(with songs: [SongEntity]) {
         self.songs = songs
     }
+}
+
+extension DownloadedSongDataSource {
+    func deleteDownloadedSong(at indexPath: IndexPath) {
+        let songToDelete = songs[indexPath.row]
+        dataController.viewContext.delete(songToDelete)
+        do {
+            try dataController.viewContext.save()
+        } catch {
+            print("Can delete song from core data, error: \(error.localizedDescription)")
+        }
+        songs.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        
+        if songs.count == 0 {
+            DownloadedSongController().setEditing(false, animated: true)
+        }
+    }
+    
+
 }

@@ -10,6 +10,7 @@
 		7500D91222FD8B9600365311 /* ArtistResultsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7500D91122FD8B9600365311 /* ArtistResultsResponse.swift */; };
 		7500D91422FEC88400365311 /* AlbumLookupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7500D91322FEC88400365311 /* AlbumLookupResponse.swift */; };
 		7500D91622FEFFCD00365311 /* AlbumResultsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7500D91522FEFFCD00365311 /* AlbumResultsResponse.swift */; };
+		7505DC7C230D695B006DC824 /* UITableViewCell+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7505DC7B230D695B006DC824 /* UITableViewCell+IndexPath.swift */; };
 		753A5FC022EB1F7F005EDCC8 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A5FBF22EB1F7F005EDCC8 /* SongCell.swift */; };
 		753A5FC222EB2091005EDCC8 /* AlbumDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A5FC122EB2091005EDCC8 /* AlbumDetailDataSource.swift */; };
 		753A5FC422EB2249005EDCC8 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753A5FC322EB2249005EDCC8 /* SongViewModel.swift */; };
@@ -35,7 +36,7 @@
 		757B217F230232C8005A6C68 /* PendingOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757B217E230232C8005A6C68 /* PendingOperations.swift */; };
 		7595B05323088E9300870761 /* AppleMusic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7595B05123088E9300870761 /* AppleMusic.xcdatamodeld */; };
 		7595B0552309DADE00870761 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595B0542309DADE00870761 /* DataController.swift */; };
-		7595B057230A070D00870761 /* DownloadSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595B056230A070D00870761 /* DownloadSongController.swift */; };
+		7595B057230A070D00870761 /* DownloadedSongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595B056230A070D00870761 /* DownloadedSongController.swift */; };
 		7595B059230A085E00870761 /* DownloadedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595B058230A085E00870761 /* DownloadedSongCell.swift */; };
 		7595B05B230B345800870761 /* DownloadedSongDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595B05A230B345800870761 /* DownloadedSongDataSource.swift */; };
 		7595B05D230B361A00870761 /* DownloadedSongCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7595B05C230B361A00870761 /* DownloadedSongCellViewModel.swift */; };
@@ -55,6 +56,7 @@
 		7500D91122FD8B9600365311 /* ArtistResultsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistResultsResponse.swift; sourceTree = "<group>"; };
 		7500D91322FEC88400365311 /* AlbumLookupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumLookupResponse.swift; sourceTree = "<group>"; };
 		7500D91522FEFFCD00365311 /* AlbumResultsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumResultsResponse.swift; sourceTree = "<group>"; };
+		7505DC7B230D695B006DC824 /* UITableViewCell+IndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+IndexPath.swift"; sourceTree = "<group>"; };
 		753A5FBF22EB1F7F005EDCC8 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		753A5FC122EB2091005EDCC8 /* AlbumDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailDataSource.swift; sourceTree = "<group>"; };
 		753A5FC322EB2249005EDCC8 /* SongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		757B217E230232C8005A6C68 /* PendingOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOperations.swift; sourceTree = "<group>"; };
 		7595B05223088E9300870761 /* AppleMusic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppleMusic.xcdatamodel; sourceTree = "<group>"; };
 		7595B0542309DADE00870761 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		7595B056230A070D00870761 /* DownloadSongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadSongController.swift; sourceTree = "<group>"; };
+		7595B056230A070D00870761 /* DownloadedSongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedSongController.swift; sourceTree = "<group>"; };
 		7595B058230A085E00870761 /* DownloadedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedSongCell.swift; sourceTree = "<group>"; };
 		7595B05A230B345800870761 /* DownloadedSongDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedSongDataSource.swift; sourceTree = "<group>"; };
 		7595B05C230B361A00870761 /* DownloadedSongCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedSongCellViewModel.swift; sourceTree = "<group>"; };
@@ -163,7 +165,7 @@
 				755BFF8A22E7A143006F924F /* SearchResultsController.swift */,
 				755BFF8F22E912DE006F924F /* AlbumListController.swift */,
 				755BFF9822EA5E97006F924F /* AlbumDetailController.swift */,
-				7595B056230A070D00870761 /* DownloadSongController.swift */,
+				7595B056230A070D00870761 /* DownloadedSongController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -174,6 +176,7 @@
 				755BFF9122E9148D006F924F /* AlbumCell.swift */,
 				753A5FBF22EB1F7F005EDCC8 /* SongCell.swift */,
 				7595B058230A085E00870761 /* DownloadedSongCell.swift */,
+				7505DC7B230D695B006DC824 /* UITableViewCell+IndexPath.swift */,
 				755BFF6F22E6520E006F924F /* Main.storyboard */,
 				755BFF7422E6520F006F924F /* LaunchScreen.storyboard */,
 				755BFF7222E6520F006F924F /* Assets.xcassets */,
@@ -333,7 +336,7 @@
 				755BFF9022E912DE006F924F /* AlbumListController.swift in Sources */,
 				7595B05323088E9300870761 /* AppleMusic.xcdatamodeld in Sources */,
 				7595B059230A085E00870761 /* DownloadedSongCell.swift in Sources */,
-				7595B057230A070D00870761 /* DownloadSongController.swift in Sources */,
+				7595B057230A070D00870761 /* DownloadedSongController.swift in Sources */,
 				7595B05D230B361A00870761 /* DownloadedSongCellViewModel.swift in Sources */,
 				755BFF8322E65839006F924F /* Genre.swift in Sources */,
 				757B217F230232C8005A6C68 /* PendingOperations.swift in Sources */,
@@ -345,6 +348,7 @@
 				755BFF8E22E878E3006F924F /* SearchResultsDataSource.swift in Sources */,
 				755BFF9222E9148D006F924F /* AlbumCell.swift in Sources */,
 				759DF8B022F0E8BA00C5B2C0 /* ItunesMedia.swift in Sources */,
+				7505DC7C230D695B006DC824 /* UITableViewCell+IndexPath.swift in Sources */,
 				7500D91622FEFFCD00365311 /* AlbumResultsResponse.swift in Sources */,
 				755BFF8922E72CAB006F924F /* Stub.swift in Sources */,
 				7595B05B230B345800870761 /* DownloadedSongDataSource.swift in Sources */,

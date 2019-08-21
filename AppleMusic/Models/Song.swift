@@ -14,4 +14,6 @@ struct Song {
     let censoredName: String
     let trackTime: Int
     let isExplicit: Bool
+    let artistName: String
+    let albumName: String
 }

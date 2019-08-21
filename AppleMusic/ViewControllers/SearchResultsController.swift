@@ -13,6 +13,8 @@ class SearchResultsController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let dataSource = SearchResultsDataSource()
     
+    var dataController: DataController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +23,7 @@ class SearchResultsController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         definesPresentationContext = true
+        
     }
 
     
@@ -41,6 +44,7 @@ class SearchResultsController: UITableViewController {
         let artist = dataSource.artist(at: selectedindexPath)
         let albumListController = segue.destination as! AlbumListController
         
+        albumListController.dataController = dataController
         ItunesClient.lookupArtist(by: artist.id) { (artist, error) in
             albumListController.artist = artist
         }

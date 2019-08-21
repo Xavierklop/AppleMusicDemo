@@ -12,6 +12,8 @@ class AlbumDetailController: UITableViewController {
     
     var dataSource = AlbumDetailDataSource(songs: [])
     
+    var dataController: DataController!
+    
     var album: Album? {
         didSet {
             if let album = album {
@@ -32,11 +34,13 @@ class AlbumDetailController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dataSource.dataController = dataController
+        
         tableView.dataSource = dataSource
+        
         if let album = album {
             configure(with: album)
         }
-        
     }
 
     func configure(with album: Album) {

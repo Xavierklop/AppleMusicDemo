@@ -14,7 +14,9 @@ class DownloadedSongController: UITableViewController {
     private struct Constants {
         static let SongCellHeight: CGFloat = 80
     }
+    
     var dataController: DataController!
+    
     var dataScource = DownloadedSongDataSource(songs: [])
     // TODO: - After coredata replace stub data
     var songs:[SongEntity] = []
@@ -24,6 +26,8 @@ class DownloadedSongController: UITableViewController {
         self.title = "Downloaded Songs"
         dataScource.update(with: songs)
         tableView.dataSource = dataScource
+        dataScource.dataController = dataController
+        dataScource.tableView = tableView
         
         let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
         let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -31,9 +35,24 @@ class DownloadedSongController: UITableViewController {
         
         if let result = try? dataController.viewContext.fetch(fetchRequest) {
             songs = result
+            dataScource.update(with: songs)
             tableView.reloadData()
         }
+        
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
+        let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescription]
+        
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            songs = result
+            dataScource.update(with: songs)
+            tableView.reloadData()
+        }
     }
 
     // MARK: - Table View Delegate
@@ -41,4 +60,8 @@ class DownloadedSongController: UITableViewController {
         return Constants.SongCellHeight
     }
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
 }
