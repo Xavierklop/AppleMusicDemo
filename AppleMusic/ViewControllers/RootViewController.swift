@@ -9,11 +9,18 @@
 import UIKit
 
 class RootViewController: UIViewController {
+    
+    var dataController: DataController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let tabBarVC = segue.destination as! UITabBarController
+        let navigationVC = tabBarVC.viewControllers?.last as! UINavigationController
+        let downloadedSongVC = navigationVC.topViewController as! DownloadedSongController
+        downloadedSongVC.dataController = dataController
+    }
 }
 

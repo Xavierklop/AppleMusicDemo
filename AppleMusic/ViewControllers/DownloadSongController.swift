@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DownloadedSongController: UITableViewController {
     
@@ -16,7 +17,7 @@ class DownloadedSongController: UITableViewController {
     var dataController: DataController!
     var dataScource = DownloadedSongDataSource(songs: [])
     // TODO: - After coredata replace stub data
-    var songs:[Song] = Stub.songs
+    var songs:[SongEntity] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,15 @@ class DownloadedSongController: UITableViewController {
         dataScource.update(with: songs)
         tableView.dataSource = dataScource
         
-        // test
-        print(dataController)
+        let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
+        let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescription]
+        
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            songs = result
+            tableView.reloadData()
+        }
+    
     }
 
     // MARK: - Table View Delegate

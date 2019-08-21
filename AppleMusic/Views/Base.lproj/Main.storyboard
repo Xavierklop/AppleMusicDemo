@@ -317,17 +317,26 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:22" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpk-SS-sSf">
-                                            <rect key="frame" x="378.66666666666669" y="13.333333333333336" width="27.333333333333314" height="17"/>
+                                            <rect key="frame" x="124.99999999999999" y="13.333333333333336" width="27.333333333333329" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdK-cb-pFd" userLabel="Download Button">
+                                            <rect key="frame" x="337" y="7" width="69" height="30"/>
+                                            <state key="normal" title="Download"/>
+                                            <connections>
+                                                <action selector="downloadTapped:" destination="CO0-pD-1dD" eventType="touchUpInside" id="23E-N6-KMe"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="gpk-SS-sSf" secondAttribute="trailing" constant="8" id="IzM-iN-lGd"/>
                                         <constraint firstItem="gpk-SS-sSf" firstAttribute="centerY" secondItem="LP4-fP-4ye" secondAttribute="centerY" id="TNB-gg-NmC"/>
+                                        <constraint firstItem="UdK-cb-pFd" firstAttribute="centerY" secondItem="LP4-fP-4ye" secondAttribute="centerY" id="UdQ-69-Bvw"/>
                                         <constraint firstItem="i2u-Rx-fuu" firstAttribute="centerY" secondItem="LP4-fP-4ye" secondAttribute="centerY" id="f7N-Pk-wC0"/>
+                                        <constraint firstAttribute="trailing" secondItem="UdK-cb-pFd" secondAttribute="trailing" constant="8" id="gQx-jx-Vmr"/>
                                         <constraint firstItem="i2u-Rx-fuu" firstAttribute="leading" secondItem="LP4-fP-4ye" secondAttribute="leadingMargin" constant="8" id="mYv-Nc-i6R"/>
+                                        <constraint firstItem="gpk-SS-sSf" firstAttribute="leading" secondItem="i2u-Rx-fuu" secondAttribute="trailing" constant="8" id="qpA-GW-N5A"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -350,7 +359,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFa-o3-F5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2202" y="27"/>
+            <point key="canvasLocation" x="2201.449275362319" y="26.90217391304348"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bmo-Tn-Ce1">

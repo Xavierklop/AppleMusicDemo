@@ -29,6 +29,7 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: SongCell.reuseIdentifier, for: indexPath) as! SongCell
+        songCell.songCellDelegate = self
         
         let song = songs[indexPath.row]
         let viewModel = SongViewModel(song: song)
@@ -47,5 +48,11 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     // MARK: - Helper Metherds
     func update(with songs: [Song]) {
         self.songs = songs
+    }
+}
+
+extension AlbumDetailDataSource: SongCellDelegate {
+    func downloadTapped(_ cell: SongCell) {
+        print("work well")
     }
 }

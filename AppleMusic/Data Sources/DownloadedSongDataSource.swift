@@ -10,9 +10,9 @@ import UIKit
 
 class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     
-    private var songs: [Song]
+    private var songs: [SongEntity]
     
-    init(songs: [Song]) {
+    init(songs: [SongEntity]) {
         self.songs = songs
         super.init()
     }
@@ -37,7 +37,7 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     }
     
     // Helper method
-    func update(with songs: [Song]) {
+    func update(with songs: [SongEntity]) {
         self.songs = songs
     }
 }
