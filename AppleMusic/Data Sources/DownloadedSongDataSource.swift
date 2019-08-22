@@ -11,16 +11,9 @@ import CoreData
 
 class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     
-//    private var songs: [SongEntity]
-    
     var tableView: UITableView!
     var dataController: DataController!
     var fetchedResultsController: NSFetchedResultsController<SongEntity>!
-    
-//    init(songs: [SongEntity]) {
-//        self.songs = songs
-//        super.init()
-//    }
     
     // Data Scource
     
@@ -50,10 +43,6 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    // Helper method
-//    func update(with songs: [SongEntity]) {
-//        self.songs = songs
-//    }
 }
 
 extension DownloadedSongDataSource {
@@ -65,12 +54,6 @@ extension DownloadedSongDataSource {
         } catch {
             print("Can delete song from core data, error: \(error.localizedDescription)")
         }
-//        songs.remove(at: indexPath.row)
-//        tableView.deleteRows(at: [indexPath], with: .fade)
-//
-//        if songs.count == 0 {
-//            DownloadedSongController().setEditing(false, animated: true)
-//        }
     }
 
 }
