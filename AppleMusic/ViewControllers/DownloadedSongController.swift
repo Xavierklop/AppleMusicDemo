@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DownloadedSongController: UITableViewController, NSFetchedResultsControllerDelegate {
+class DownloadedSongController: UITableViewController {
     
     private struct Constants {
         static let SongCellHeight: CGFloat = 80
@@ -17,29 +17,29 @@ class DownloadedSongController: UITableViewController, NSFetchedResultsControlle
     
     var dataController: DataController!
     
-    var dataScource = DownloadedSongDataSource(songs: [])
+    var dataScource = DownloadedSongDataSource()
     var fetchedResultsController: NSFetchedResultsController<SongEntity>!
     // TODO: - After coredata replace data
-    var songs:[SongEntity] = []
+//    var songs:[SongEntity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Downloaded Songs"
-        dataScource.update(with: songs)
+//        dataScource.update(with: songs)
+        setUpFetchedReultsContoller()
         tableView.dataSource = dataScource
         dataScource.dataController = dataController
         dataScource.tableView = tableView
+        dataScource.fetchedResultsController = fetchedResultsController
         
-        setUpFetchedReultsContoller()
-        
-        reloadSongEntity()
+//        reloadSongEntity()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        reloadSongEntity()
+        setUpFetchedReultsContoller()
+//        reloadSongEntity()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,16 +71,23 @@ class DownloadedSongController: UITableViewController, NSFetchedResultsControlle
         tableView.setEditing(editing, animated: animated)
     }
     
-    // MARK: - Editing
-    fileprivate func reloadSongEntity() {
-        let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
-        let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescription]
-        
-        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            songs = result
-            dataScource.update(with: songs)
-            tableView.reloadData()
+}
+
+extension DownloadedSongController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert: tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete: tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update: tableView.reloadRows(at: [indexPath!], with: .fade)
+        case .move: tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
 }

@@ -7,33 +7,35 @@
 //
 
 import UIKit
+import CoreData
 
 class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     
-    private var songs: [SongEntity]
+//    private var songs: [SongEntity]
     
     var tableView: UITableView!
     var dataController: DataController!
+    var fetchedResultsController: NSFetchedResultsController<SongEntity>!
     
-    init(songs: [SongEntity]) {
-        self.songs = songs
-        super.init()
-    }
+//    init(songs: [SongEntity]) {
+//        self.songs = songs
+//        super.init()
+//    }
     
     // Data Scource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DownloadedSongCell.reuseIdentifier, for: indexPath) as! DownloadedSongCell
         // TODO: - Add other properties after add coredata
-        let song = songs[indexPath.row]
+        let song = fetchedResultsController.object(at: indexPath)
         cell.songTitleLabel.text = song.name
         cell.albumTitleLabel.text = song.albumName
         cell.artistNameLabel.text = song.artistName
@@ -49,27 +51,26 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     }
     
     // Helper method
-    func update(with songs: [SongEntity]) {
-        self.songs = songs
-    }
+//    func update(with songs: [SongEntity]) {
+//        self.songs = songs
+//    }
 }
 
 extension DownloadedSongDataSource {
     func deleteDownloadedSong(at indexPath: IndexPath) {
-        let songToDelete = songs[indexPath.row]
+        let songToDelete = fetchedResultsController.object(at: indexPath)
         dataController.viewContext.delete(songToDelete)
         do {
             try dataController.viewContext.save()
         } catch {
             print("Can delete song from core data, error: \(error.localizedDescription)")
         }
-        songs.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-        
-        if songs.count == 0 {
-            DownloadedSongController().setEditing(false, animated: true)
-        }
+//        songs.remove(at: indexPath.row)
+//        tableView.deleteRows(at: [indexPath], with: .fade)
+//
+//        if songs.count == 0 {
+//            DownloadedSongController().setEditing(false, animated: true)
+//        }
     }
-    
 
 }
