@@ -32,6 +32,9 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
         cell.songTitleLabel.text = song.name
         cell.albumTitleLabel.text = song.albumName
         cell.artistNameLabel.text = song.artistName
+        if let artworkData = song.artworkData {
+            cell.artworkView.image = UIImage(data: artworkData)
+        }
         
         return cell
     }

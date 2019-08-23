@@ -69,7 +69,10 @@ extension AlbumDetailDataSource: SongCellDelegate {
             songEntity.trackTime = Int32(song.trackTime)
             songEntity.artistName = song.artistName
             songEntity.albumName = song.albumName
-            
+            if let imageData = imageData {
+                    songEntity.artworkData = imageData
+            }
+        
             do {
                 try dataController.viewContext.save()
             } catch {
