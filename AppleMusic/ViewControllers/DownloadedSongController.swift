@@ -19,27 +19,16 @@ class DownloadedSongController: UITableViewController {
     
     var dataScource = DownloadedSongDataSource()
     var fetchedResultsController: NSFetchedResultsController<SongEntity>!
-    // TODO: - After coredata replace data
-//    var songs:[SongEntity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Downloaded Songs"
-//        dataScource.update(with: songs)
         setUpFetchedReultsContoller()
         tableView.dataSource = dataScource
         dataScource.dataController = dataController
         dataScource.tableView = tableView
         dataScource.fetchedResultsController = fetchedResultsController
         
-//        reloadSongEntity()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setUpFetchedReultsContoller()
-//        reloadSongEntity()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,19 +64,26 @@ class DownloadedSongController: UITableViewController {
 
 extension DownloadedSongController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+            tableView.beginUpdates()
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+            tableView.endUpdates()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
-        case .insert: tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            break
         case .delete: tableView.deleteRows(at: [indexPath!], with: .fade)
-        case .update: tableView.reloadRows(at: [indexPath!], with: .fade)
-        case .move: tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            break
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
+            break
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            break
         }
     }
 }

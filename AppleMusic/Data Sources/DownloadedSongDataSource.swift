@@ -38,7 +38,8 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
-        case .delete: deleteDownloadedSong(at: indexPath)
+        case .delete:
+            deleteDownloadedSong(at: indexPath)
         default: ()
         }
     }
@@ -53,7 +54,7 @@ extension DownloadedSongDataSource {
             try dataController.viewContext.save()
         } catch {
             print("Can delete song from core data, error: \(error.localizedDescription)")
-        }
+        }        
     }
 
 }
