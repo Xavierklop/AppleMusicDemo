@@ -31,6 +31,7 @@ class ArtworkDownloader: Operation {
             if imageData.count > 0 {
                 album.artwork = UIImage(data: imageData)
                 album.artworkState = .downloaded
+                album.artworkData = imageData
             } else {
                 album.artworkState = .failed
             }

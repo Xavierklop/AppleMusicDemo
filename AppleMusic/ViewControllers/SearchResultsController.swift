@@ -22,8 +22,9 @@ class SearchResultsController: UITableViewController {
         tableView.dataSource = dataSource
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "search artist"
         definesPresentationContext = true
-        
+        self.title = "Search"
     }
 
     

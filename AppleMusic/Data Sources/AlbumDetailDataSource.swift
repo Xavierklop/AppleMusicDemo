@@ -11,8 +11,9 @@ import UIKit
 
 class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     private var songs: [Song]
-    
     // test
+    private var imageData: Data?
+    
     var dataController: DataController!
     
     init(songs: [Song]) {
@@ -49,8 +50,9 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     }
     
     // MARK: - Helper Metherds
-    func update(with songs: [Song]) {
+    func update(with songs: [Song], imageData: Data?) {
         self.songs = songs
+        self.imageData = imageData
     }
 }
 

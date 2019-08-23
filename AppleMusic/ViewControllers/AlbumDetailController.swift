@@ -20,7 +20,7 @@ class AlbumDetailController: UITableViewController {
                 artworkView.image = album.artwork
                 self.title = album.name
                 configure(with: album)
-                dataSource.update(with: album.songs)
+                dataSource.update(with: album.songs, imageData: album.artworkData)
                 tableView.reloadData()
             }
         }

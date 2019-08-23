@@ -28,6 +28,7 @@ class Album {
     var songs = [Song]()
     var artwork: UIImage?
     var artworkState = AlbumArtworkState.placeholder
+    var artworkData: Data?
     
     init(id: Int, artistName: String, name: String, censoredName: String,artworkUrl: String, isExplicit: Bool, numberOfTracks: Int, releaseDate: Date, primaryGenre: String) {
         self.id = id

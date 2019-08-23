@@ -31,18 +31,18 @@ class AlbumListDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.reuseIdentifier, for: indexPath) as! AlbumCell
+        let albumCell = tableView.dequeueReusableCell(withIdentifier: AlbumCell.reuseIdentifier, for: indexPath) as! AlbumCell
         
         let album = albums[indexPath.row]
         let viewModel = AlbumCellViewModel(album: album)
-        cell.configure(with: viewModel)
-        cell.accessoryType = .disclosureIndicator
+        albumCell.configure(with: viewModel)
+        albumCell.accessoryType = .disclosureIndicator
         
         if album.artworkState == .placeholder {
             downloadAlbumArtwork(by: album, at: indexPath)
         }
         
-        return cell
+        return albumCell
     }
     
     // Helper Metheds
