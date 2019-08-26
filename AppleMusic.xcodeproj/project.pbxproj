@@ -51,6 +51,9 @@
 		759DF8C022F84C5500C5B2C0 /* ItunesSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8BF22F84C5500C5B2C0 /* ItunesSearchResponse.swift */; };
 		759DF8C222F8586400C5B2C0 /* ItunesArtistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8C122F8586400C5B2C0 /* ItunesArtistResponse.swift */; };
 		759DF8C622F8FC7300C5B2C0 /* ArtistLookupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DF8C522F8FC7300C5B2C0 /* ArtistLookupResponse.swift */; };
+		75A2AC3B2313F8CF00909C85 /* DownloadPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2AC3A2313F8CF00909C85 /* DownloadPreview.swift */; };
+		75A2AC3D2313FA0B00909C85 /* SongPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2AC3C2313FA0B00909C85 /* SongPreview.swift */; };
+		75A2AC3F2314865C00909C85 /* PreviewDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2AC3E2314865C00909C85 /* PreviewDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +103,9 @@
 		759DF8BF22F84C5500C5B2C0 /* ItunesSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesSearchResponse.swift; sourceTree = "<group>"; };
 		759DF8C122F8586400C5B2C0 /* ItunesArtistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesArtistResponse.swift; sourceTree = "<group>"; };
 		759DF8C522F8FC7300C5B2C0 /* ArtistLookupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistLookupResponse.swift; sourceTree = "<group>"; };
+		75A2AC3A2313F8CF00909C85 /* DownloadPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadPreview.swift; sourceTree = "<group>"; };
+		75A2AC3C2313FA0B00909C85 /* SongPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPreview.swift; sourceTree = "<group>"; };
+		75A2AC3E2314865C00909C85 /* PreviewDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,8 @@
 				7595B05123088E9300870761 /* AppleMusic.xcdatamodeld */,
 				759DF8AE22F0E89B00C5B2C0 /* Endpoint */,
 				759DF8BE22F84C0600C5B2C0 /* Itunes Response */,
+				75A2AC3A2313F8CF00909C85 /* DownloadPreview.swift */,
+				75A2AC3C2313FA0B00909C85 /* SongPreview.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 				759DF8BC22F80B9200C5B2C0 /* ItunesClientError.swift */,
 				757B217C23022647005A6C68 /* ArtworkDownloader.swift */,
 				757B217E230232C8005A6C68 /* PendingOperations.swift */,
+				75A2AC3E2314865C00909C85 /* PreviewDownloader.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -329,7 +338,9 @@
 				753A5FC022EB1F7F005EDCC8 /* SongCell.swift in Sources */,
 				755BFF8722E66BBB006F924F /* Song.swift in Sources */,
 				7505DC7F230DFC4E006DC824 /* SongEntity+Extensions.swift in Sources */,
+				75A2AC3B2313F8CF00909C85 /* DownloadPreview.swift in Sources */,
 				755BFF8122E65780006F924F /* Artist.swift in Sources */,
+				75A2AC3F2314865C00909C85 /* PreviewDownloader.swift in Sources */,
 				759DF8B422F2495C00C5B2C0 /* ItunesEntity.swift in Sources */,
 				755BFF6E22E6520E006F924F /* RootViewController.swift in Sources */,
 				755BFF9722E9CA62006F924F /* AlbumCellViewModel.swift in Sources */,
@@ -350,6 +361,7 @@
 				7595B059230A085E00870761 /* DownloadedSongCell.swift in Sources */,
 				7595B057230A070D00870761 /* DownloadedSongController.swift in Sources */,
 				7595B05D230B361A00870761 /* DownloadedSongCellViewModel.swift in Sources */,
+				75A2AC3D2313FA0B00909C85 /* SongPreview.swift in Sources */,
 				755BFF8322E65839006F924F /* Genre.swift in Sources */,
 				757B217F230232C8005A6C68 /* PendingOperations.swift in Sources */,
 				7500D91222FD8B9600365311 /* ArtistResultsResponse.swift in Sources */,

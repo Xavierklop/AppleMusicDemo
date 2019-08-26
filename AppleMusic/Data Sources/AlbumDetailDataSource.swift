@@ -11,10 +11,12 @@ import UIKit
 
 class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     private var songs: [Song]
-    // test
     private var imageData: Data?
     
     var dataController: DataController!
+    
+    var songPreviews: [SongPreview] = []
+    let previewDownloader = PreviewDownloader()
     
     init(songs: [Song]) {
         self.songs = songs
@@ -24,6 +26,7 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     // MARK: - Data Source
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        configurePreviews(songs)
         return 1
     }
     
@@ -37,7 +40,9 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
         
         let song = songs[indexPath.row]
         let viewModel = SongViewModel(song: song)
-        songCell.configure(with: viewModel)
+        // TODO: - add miss property
+        let songPreview = songPreviews[indexPath.row]
+        songCell.configure(with: viewModel, songPreview: songPreview, downloaded: songPreview.downloaded, downloadPreview: previewDownloader.activeDownloads[songPreview.previewURL])
         
         return songCell
     }
@@ -53,6 +58,15 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     func update(with songs: [Song], imageData: Data?) {
         self.songs = songs
         self.imageData = imageData
+    }
+    
+    func configurePreviews(_ song: [Song]) {
+        var index = 0
+        songs.forEach {
+            let previewURL = $0.previewUrl
+            songPreviews.append(SongPreview(previewURL: previewURL, index: index))
+            index += 1
+        }
     }
 }
 
@@ -80,5 +94,17 @@ extension AlbumDetailDataSource: SongCellDelegate {
             }
         
         }
+    }
+    
+    func cancelTapped(_ cell: SongCell) {
+        
+    }
+    
+    func pauseTapped(_ cell: SongCell) {
+        
+    }
+    
+    func resumeTapped(_ cell: SongCell) {
+        
     }
 }

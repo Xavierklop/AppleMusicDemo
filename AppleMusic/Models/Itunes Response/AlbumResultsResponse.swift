@@ -22,6 +22,7 @@ struct AlbumResultsResponse: Codable {
     let trackName, trackCensoredName: String?
     let trackExplicitness: String?
     let trackTimeMillis: Int?
+    let previewURL: String?
     
     enum CodingKeys: String, CodingKey {
         case artistID = "artistId"
@@ -31,5 +32,6 @@ struct AlbumResultsResponse: Codable {
         case trackID = "trackId"
         case trackName, trackCensoredName
         case trackExplicitness, trackTimeMillis
+        case previewURL = "previewUrl"
     }
 }

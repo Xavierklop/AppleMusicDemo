@@ -16,4 +16,5 @@ struct Song {
     let isExplicit: Bool
     let artistName: String
     let albumName: String
+    let previewUrl: URL
 }

@@ -28,10 +28,10 @@ class DownloadedSongCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configre(with viewModel: DownloadedSongViewModel) {
-        songTitleLabel.text = viewModel.songTitle
-        artistNameLabel.text = viewModel.artistTitle
-        albumTitleLabel.text = viewModel.albumTitle
-        // TODO: - add artworkView.image when finish CoreData
-    }
+//    func configre(with viewModel: DownloadedSongViewModel) {
+//        songTitleLabel.text = viewModel.songTitle
+//        artistNameLabel.text = viewModel.artistTitle
+//        albumTitleLabel.text = viewModel.albumTitle
+//        // TODO: - add artworkView.image when finish CoreData
+//    }
 }

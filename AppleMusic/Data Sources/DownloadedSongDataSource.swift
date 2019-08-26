@@ -26,17 +26,17 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DownloadedSongCell.reuseIdentifier, for: indexPath) as! DownloadedSongCell
-        // TODO: - Add other properties after add coredata
-        let song = fetchedResultsController.object(at: indexPath)
-        cell.songTitleLabel.text = song.name
-        cell.albumTitleLabel.text = song.albumName
-        cell.artistNameLabel.text = song.artistName
-        if let artworkData = song.artworkData {
-            cell.artworkView.image = UIImage(data: artworkData)
+        let downloadedSongCell = tableView.dequeueReusableCell(withIdentifier: DownloadedSongCell.reuseIdentifier, for: indexPath) as! DownloadedSongCell
+        
+        let songEntity = fetchedResultsController.object(at: indexPath)
+        downloadedSongCell.songTitleLabel.text = songEntity.name
+        downloadedSongCell.albumTitleLabel.text = songEntity.albumName
+        downloadedSongCell.artistNameLabel.text = songEntity.artistName
+        if let artworkData = songEntity.artworkData {
+            downloadedSongCell.artworkView.image = UIImage(data: artworkData)
         }
         
-        return cell
+        return downloadedSongCell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
