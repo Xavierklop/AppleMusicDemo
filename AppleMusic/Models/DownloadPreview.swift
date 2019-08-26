@@ -17,5 +17,6 @@ class DownloadPreview {
     
     init(preview: SongPreview) {
         self.preView = preview
+        
     }
 }
