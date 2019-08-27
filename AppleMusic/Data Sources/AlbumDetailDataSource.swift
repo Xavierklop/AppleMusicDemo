@@ -26,7 +26,6 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     // MARK: - Data Source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        configurePreviews(songs)
         return 1
     }
     
@@ -58,15 +57,18 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     func update(with songs: [Song], imageData: Data?) {
         self.songs = songs
         self.imageData = imageData
+        self.songPreviews = configurePreviews(songs: songs)
     }
     
-    func configurePreviews(_ song: [Song]) {
+    func configurePreviews(songs: [Song]) -> [SongPreview] {
         var index = 0
+        var songPreviews: [SongPreview] = []
         songs.forEach {
             let previewURL = $0.previewUrl
             songPreviews.append(SongPreview(previewURL: previewURL, index: index))
             index += 1
         }
+        return songPreviews
     }
 }
 
