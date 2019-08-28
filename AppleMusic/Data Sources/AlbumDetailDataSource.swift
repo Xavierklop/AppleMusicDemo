@@ -90,7 +90,6 @@ extension AlbumDetailDataSource: SongCellDelegate {
                     songEntity.artworkData = imageData
             }
             
-            // MARK: - test: startDownload SongPreview
             let songPreview = songPreviews[indexPath.row]
             previewDownloader.startDownload(songPreview)
             tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .none)
