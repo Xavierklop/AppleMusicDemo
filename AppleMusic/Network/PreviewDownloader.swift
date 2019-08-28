@@ -12,4 +12,15 @@ class PreviewDownloader {
     
     var activeDownloads: [URL: DownloadPreview] = [ : ]
     var downloadsSession: URLSession!
+    
+    func startDownload(_ songPreview: SongPreview) {
+        
+        let downloadPreview = DownloadPreview(preview: songPreview)
+        
+        downloadPreview.task = downloadsSession.downloadTask(with: songPreview.previewURL)
+        downloadPreview.task?.resume()
+        downloadPreview.isDownloading = true
+        
+        activeDownloads[downloadPreview.songPreView.previewURL] = downloadPreview
+    }
 }

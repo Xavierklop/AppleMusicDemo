@@ -311,19 +311,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-Rx-fuu">
-                                            <rect key="frame" x="28" y="11.666666666666666" width="89" height="20.333333333333336"/>
+                                            <rect key="frame" x="28" y="7.9999999999999982" width="89" height="25.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:22" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpk-SS-sSf">
-                                            <rect key="frame" x="125" y="13.333333333333336" width="27" height="17"/>
+                                            <rect key="frame" x="125" y="12" width="27" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdK-cb-pFd" userLabel="Download Button">
-                                            <rect key="frame" x="322" y="2" width="84" height="26.333333333333332"/>
+                                            <rect key="frame" x="315" y="2" width="91" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="Download"/>
                                             <connections>
@@ -331,13 +331,13 @@
                                             </connections>
                                         </button>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100% of 1.24MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIH-lY-1wr" userLabel="Progrocess View">
-                                            <rect key="frame" x="322" y="30.333333333333332" width="84" height="11.333333333333332"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <rect key="frame" x="315" y="29.999999999999996" width="91" height="14.333333333333332"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBu-qX-Etj" userLabel="Cancel Button">
-                                            <rect key="frame" x="371" y="2" width="39" height="26.333333333333332"/>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBu-qX-Etj" userLabel="Cancel Button">
+                                            <rect key="frame" x="367" y="2" width="39" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="Cancel"/>
                                             <connections>
@@ -345,7 +345,7 @@
                                             </connections>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGe-Ez-Mts" userLabel="Pause Button">
-                                            <rect key="frame" x="328" y="2" width="35" height="26.333333333333332"/>
+                                            <rect key="frame" x="315" y="2" width="44" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="Pause"/>
                                             <connections>
@@ -353,10 +353,7 @@
                                             </connections>
                                         </button>
                                         <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NJk-w7-gWY">
-                                            <rect key="frame" x="28" y="35" width="286" height="2"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="2" id="XS7-8g-ggq"/>
-                                            </constraints>
+                                            <rect key="frame" x="28" y="36.333333333333336" width="279" height="2"/>
                                         </progressView>
                                     </subviews>
                                     <constraints>
@@ -364,20 +361,20 @@
                                         <constraint firstItem="cGe-Ez-Mts" firstAttribute="top" secondItem="BBu-qX-Etj" secondAttribute="top" id="1Gi-kb-2Hy"/>
                                         <constraint firstItem="UdK-cb-pFd" firstAttribute="top" secondItem="LP4-fP-4ye" secondAttribute="top" constant="2" id="22e-Q6-c9g"/>
                                         <constraint firstItem="kIH-lY-1wr" firstAttribute="leading" secondItem="UdK-cb-pFd" secondAttribute="leading" id="4Wu-Sn-5QX"/>
-                                        <constraint firstAttribute="bottom" secondItem="kIH-lY-1wr" secondAttribute="bottom" constant="2" id="FrZ-uG-Og1"/>
+                                        <constraint firstItem="i2u-Rx-fuu" firstAttribute="top" secondItem="LP4-fP-4ye" secondAttribute="top" constant="8" id="7kP-ss-jxK"/>
                                         <constraint firstItem="BBu-qX-Etj" firstAttribute="top" secondItem="LP4-fP-4ye" secondAttribute="top" constant="2" id="GRJ-JA-Kw9"/>
                                         <constraint firstItem="NJk-w7-gWY" firstAttribute="top" secondItem="i2u-Rx-fuu" secondAttribute="bottom" constant="3" id="Hgg-tA-JxV"/>
-                                        <constraint firstItem="gpk-SS-sSf" firstAttribute="centerY" secondItem="LP4-fP-4ye" secondAttribute="centerY" id="TNB-gg-NmC"/>
+                                        <constraint firstItem="NJk-w7-gWY" firstAttribute="centerY" secondItem="kIH-lY-1wr" secondAttribute="centerY" id="IfY-lf-8uF"/>
                                         <constraint firstItem="cGe-Ez-Mts" firstAttribute="bottom" secondItem="BBu-qX-Etj" secondAttribute="bottom" id="WAP-3P-GP8"/>
-                                        <constraint firstItem="kIH-lY-1wr" firstAttribute="top" secondItem="BBu-qX-Etj" secondAttribute="bottom" constant="2.0000000000000036" id="Z5P-Ko-Mj6"/>
-                                        <constraint firstItem="kIH-lY-1wr" firstAttribute="top" secondItem="UdK-cb-pFd" secondAttribute="bottom" constant="2" id="aM1-oh-UFq"/>
+                                        <constraint firstItem="UdK-cb-pFd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gpk-SS-sSf" secondAttribute="trailing" constant="8" symbolic="YES" id="XuA-rI-rA3"/>
+                                        <constraint firstItem="kIH-lY-1wr" firstAttribute="top" secondItem="BBu-qX-Etj" secondAttribute="bottom" constant="1" id="Z5P-Ko-Mj6"/>
+                                        <constraint firstItem="BBu-qX-Etj" firstAttribute="trailing" secondItem="UdK-cb-pFd" secondAttribute="trailing" id="ZhS-Hk-tHe"/>
+                                        <constraint firstItem="kIH-lY-1wr" firstAttribute="top" secondItem="UdK-cb-pFd" secondAttribute="bottom" constant="1" id="aM1-oh-UFq"/>
                                         <constraint firstItem="kIH-lY-1wr" firstAttribute="leading" secondItem="NJk-w7-gWY" secondAttribute="trailing" constant="8" id="eH8-mF-bwb"/>
-                                        <constraint firstItem="i2u-Rx-fuu" firstAttribute="centerY" secondItem="LP4-fP-4ye" secondAttribute="centerY" id="f7N-Pk-wC0"/>
-                                        <constraint firstItem="NJk-w7-gWY" firstAttribute="centerY" secondItem="kIH-lY-1wr" secondAttribute="centerY" id="fI5-Y9-YB3"/>
                                         <constraint firstAttribute="trailing" secondItem="UdK-cb-pFd" secondAttribute="trailing" constant="8" id="gQx-jx-Vmr"/>
-                                        <constraint firstAttribute="trailing" secondItem="BBu-qX-Etj" secondAttribute="trailing" constant="4" id="lYT-Oc-V3K"/>
                                         <constraint firstItem="i2u-Rx-fuu" firstAttribute="leading" secondItem="LP4-fP-4ye" secondAttribute="leadingMargin" constant="8" id="mYv-Nc-i6R"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="NJk-w7-gWY" secondAttribute="bottom" constant="-4" id="njc-ZW-zUm"/>
+                                        <constraint firstItem="cGe-Ez-Mts" firstAttribute="leading" secondItem="UdK-cb-pFd" secondAttribute="leading" id="nlT-PS-Xw6"/>
+                                        <constraint firstItem="gpk-SS-sSf" firstAttribute="centerY" secondItem="i2u-Rx-fuu" secondAttribute="centerY" id="nrX-qe-Bhl"/>
                                         <constraint firstItem="kIH-lY-1wr" firstAttribute="trailing" secondItem="UdK-cb-pFd" secondAttribute="trailing" id="piK-0A-mV3"/>
                                         <constraint firstItem="gpk-SS-sSf" firstAttribute="leading" secondItem="i2u-Rx-fuu" secondAttribute="trailing" constant="8" id="qpA-GW-N5A"/>
                                         <constraint firstItem="BBu-qX-Etj" firstAttribute="leading" secondItem="cGe-Ez-Mts" secondAttribute="trailing" constant="8" id="qxy-rp-t3c"/>
@@ -408,7 +405,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFa-o3-F5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2201.449275362319" y="26.90217391304348"/>
+            <point key="canvasLocation" x="2241" y="24"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bmo-Tn-Ce1">

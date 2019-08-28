@@ -11,8 +11,14 @@ import UIKit
 class AlbumDetailController: UITableViewController {
     
     var dataSource = AlbumDetailDataSource(songs: [])
-    
     var dataController: DataController!
+    let previewDownloader = PreviewDownloader()
+    
+    lazy var downloadsSession: URLSession = {
+        let configuration = URLSessionConfiguration.background(withIdentifier:
+            "com.xavierwu.appleMusicDemo")
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }()
     
     var album: Album? {
         didSet {
@@ -35,6 +41,9 @@ class AlbumDetailController: UITableViewController {
         super.viewDidLoad()
         
         dataSource.dataController = dataController
+        previewDownloader.downloadsSession = downloadsSession
+        dataSource.previewDownloader = previewDownloader
+        dataSource.tableView = tableView
         
         tableView.dataSource = dataSource
         
@@ -51,4 +60,16 @@ class AlbumDetailController: UITableViewController {
         albumReleaseDateLabel.text = viewModel.releaseDate
     }
 
+}
+
+extension AlbumDetailController: URLSessionDelegate {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let completionHandler = appDelegate.backgroundSessionCompletionHandler {
+                appDelegate.backgroundSessionCompletionHandler = nil
+                completionHandler()
+            }
+        }
+    }
 }

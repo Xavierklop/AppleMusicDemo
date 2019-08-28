@@ -13,10 +13,9 @@ class DownloadPreview {
     var progress: Float = 0
     var resumeData: Data?
     var task: URLSessionDownloadTask?
-    var preView: SongPreview
+    var songPreView: SongPreview
     
     init(preview: SongPreview) {
-        self.preView = preview
-        
+        self.songPreView = preview
     }
 }

@@ -14,6 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let dataController: DataController = DataController(modelName: "AppleMusic")
+    
+    var backgroundSessionCompletionHandler: (() -> Void)?
+    
+    func application(_ application: UIApplication,
+                     handleEventsForBackgroundURLSession handleEventsForBackgroundURLSessionidentifier: String,
+                     completionHandler: @escaping () -> Void) {
+        backgroundSessionCompletionHandler = completionHandler
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

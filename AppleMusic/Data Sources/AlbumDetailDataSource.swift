@@ -10,13 +10,14 @@ import Foundation
 import UIKit
 
 class AlbumDetailDataSource: NSObject, UITableViewDataSource {
+    
     private var songs: [Song]
     private var imageData: Data?
     
     var dataController: DataController!
-    
+    var previewDownloader: PreviewDownloader!
     var songPreviews: [SongPreview] = []
-    let previewDownloader = PreviewDownloader()
+    var tableView: UITableView!
     
     init(songs: [Song]) {
         self.songs = songs
@@ -35,12 +36,12 @@ class AlbumDetailDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: SongCell.reuseIdentifier, for: indexPath) as! SongCell
-        songCell.songCellDelegate = self
         
+        songCell.songCellDelegate = self
         let song = songs[indexPath.row]
         let viewModel = SongViewModel(song: song)
-        // TODO: - add miss property
         let songPreview = songPreviews[indexPath.row]
+        
         songCell.configure(with: viewModel, songPreview: songPreview, downloaded: songPreview.downloaded, downloadPreview: previewDownloader.activeDownloads[songPreview.previewURL])
         
         return songCell
@@ -88,6 +89,11 @@ extension AlbumDetailDataSource: SongCellDelegate {
             if let imageData = imageData {
                     songEntity.artworkData = imageData
             }
+            
+            // MARK: - test: startDownload SongPreview
+            let songPreview = songPreviews[indexPath.row]
+            previewDownloader.startDownload(songPreview)
+            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .none)
         
             do {
                 try dataController.viewContext.save()
