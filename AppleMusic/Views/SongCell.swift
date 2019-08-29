@@ -56,6 +56,7 @@ class SongCell: UITableViewCell {
         }
     }
     
+    // MARK: - Helper Methods
     func configure(with viewModel: SongViewModel, songPreview: SongPreview, downloaded: Bool, downloadPreview: DownloadPreview?) {
         songTitleLabel.text = viewModel.title
         songRunTimeLabel.text = viewModel.runTime

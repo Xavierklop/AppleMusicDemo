@@ -95,6 +95,7 @@ class AlbumDetailController: UITableViewController {
 
 }
 
+// MARK: - URL Session Delegate
 extension AlbumDetailController: URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         DispatchQueue.main.async {
@@ -107,6 +108,7 @@ extension AlbumDetailController: URLSessionDelegate {
     }
 }
 
+// MARK: - URL Session Download Delegate
 extension AlbumDetailController: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         
@@ -136,6 +138,23 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
         if let index = download?.songPreView.index {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+            }
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        
+        guard let url = downloadTask.originalRequest?.url, let download = previewDownloader.activeDownloads[url] else {
+            return
+        }
+        
+        download.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        
+        let totalSize = ByteCountFormatter.string(fromByteCount: totalBytesExpectedToWrite, countStyle: .file)
+        
+        DispatchQueue.main.async {
+            if let songCell = self.tableView.cellForRow(at: IndexPath(row: download.songPreView.index, section: 0)) as? SongCell {
+                songCell.updateDownloadProgress(progress: download.progress, totalSize: totalSize)
             }
         }
     }

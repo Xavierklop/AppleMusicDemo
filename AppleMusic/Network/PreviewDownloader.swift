@@ -15,12 +15,50 @@ class PreviewDownloader {
     
     func startDownload(_ songPreview: SongPreview) {
         
-        let downloadPreview = DownloadPreview(preview: songPreview)
+        let download = DownloadPreview(preview: songPreview)
         
-        downloadPreview.task = downloadsSession.downloadTask(with: songPreview.previewURL)
-        downloadPreview.task?.resume()
-        downloadPreview.isDownloading = true
+        download.task = downloadsSession.downloadTask(with: songPreview.previewURL)
+        download.task?.resume()
+        download.isDownloading = true
         
-        activeDownloads[downloadPreview.songPreView.previewURL] = downloadPreview
+        activeDownloads[download.songPreView.previewURL] = download
+    }
+    
+    func cancelDownload(_ songPreview: SongPreview) {
+        guard let download = activeDownloads[songPreview.previewURL] else {
+            print("No activite for preview url: \(songPreview.previewURL) in activeDownloads when cancelDownload")
+            return
+        }
+        
+        download.task?.resume()
+        activeDownloads[songPreview.previewURL] = nil
+    }
+    
+    func pauseDownload(_ songPreview: SongPreview) {
+        guard let download = activeDownloads[songPreview.previewURL] else {
+            print("No activite for preview url: \(songPreview.previewURL) in activeDownloads when pauseDownload")
+            return
+        }
+        download.task?.cancel(byProducingResumeData: { (data) in
+            download.resumeData = data
+        })
+        
+        download.isDownloading = false
+    }
+    
+    func resumeDownload(_ songPreview: SongPreview) {
+        guard let download = activeDownloads[songPreview.previewURL] else {
+            print("No activite for preview url: \(songPreview.previewURL) in activeDownloads when resumeDownload")
+            return
+        }
+        
+        if let resumeData = download.resumeData {
+            download.task = downloadsSession.downloadTask(withResumeData: resumeData)
+        } else {
+            download.task = downloadsSession.downloadTask(with: download.songPreView.previewURL)
+        }
+        
+        download.task?.resume()
+        download.isDownloading = true
     }
 }

@@ -104,14 +104,26 @@ extension AlbumDetailDataSource: SongCellDelegate {
     }
     
     func cancelTapped(_ cell: SongCell) {
-        
+        if let indexPath = cell.indexPath {
+            let songPreview = songPreviews[indexPath.row]
+            previewDownloader.cancelDownload(songPreview)
+            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .none)
+        }
     }
     
     func pauseTapped(_ cell: SongCell) {
-        
+        if let indexPath = cell.indexPath {
+            let songPreview = songPreviews[indexPath.row]
+            previewDownloader.pauseDownload(songPreview)
+            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .none)
+        }
     }
     
     func resumeTapped(_ cell: SongCell) {
-        
+        if let indexPath = cell.indexPath {
+            let songPreview = songPreviews[indexPath.row]
+            previewDownloader.resumeDownload(songPreview)
+            tableView.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .none)
+        }
     }
 }
