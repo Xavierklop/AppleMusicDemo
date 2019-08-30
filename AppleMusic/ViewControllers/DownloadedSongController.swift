@@ -50,7 +50,7 @@ class DownloadedSongController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // test
         print("\nBefore get songEntity\n")
-        let songEntity = 
+        let songEntity = fetchedResultsController.object(at: indexPath)
         print("\nAfter get songEntity\n")
         playDownload(songEntity)
         
