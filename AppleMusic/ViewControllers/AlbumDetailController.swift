@@ -166,6 +166,12 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
                         print("find songEntity")
                         $0.previewDestinationURL = String(describing: destinationURL)
                         print("destinationURL is \n\($0.previewDestinationURL)")
+                        
+                        do {
+                            try dataController.viewContext.save()
+                        } catch {
+                            print("save song to core data failed, error: \(error.localizedDescription)")
+                        }
                     }
                 }
             }

@@ -16,7 +16,6 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
     var fetchedResultsController: NSFetchedResultsController<SongEntity>!
     
     // Data Scource
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 1
     }
@@ -35,6 +34,8 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
         if let artworkData = songEntity.artworkData {
             downloadedSongCell.artworkView.image = UIImage(data: artworkData)
         }
+        // test
+        print("songEntity destinationURL is \(songEntity.previewDestinationURL)")
         
         return downloadedSongCell
     }

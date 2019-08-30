@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import AVFoundation
+import AVKit
 
 class DownloadedSongController: UITableViewController {
     
@@ -35,6 +37,26 @@ class DownloadedSongController: UITableViewController {
         fetchedResultsController = nil
     }
     
+    // MARK: - Table View Delegate
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.SongCellHeight
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // test
+        print("\nBefore get songEntity\n")
+        let songEntity = 
+        print("\nAfter get songEntity\n")
+        playDownload(songEntity)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     fileprivate func setUpFetchedReultsContoller() {
         let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
         let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -48,15 +70,23 @@ class DownloadedSongController: UITableViewController {
             fatalError("The fetch could not performed: \(error.localizedDescription).")
         }
     }
-
-    // MARK: - Table View Delegate
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.SongCellHeight
-    }
-
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.setEditing(editing, animated: animated)
+    
+    func playDownload(_ songEntity: SongEntity) {
+        let playerViewController = AVPlayerViewController()
+        present(playerViewController, animated: true, completion: nil)
+        
+        guard let urlString = songEntity.previewDestinationURL else {
+            print("songEntity's previewDestinationURL is nil!")
+            return
+        }
+        // test
+        print("urlString is \(urlString)")
+        
+        if let url = URL(string: urlString) {
+            let player = AVPlayer(url: url)
+            playerViewController.player = player
+            player.play()
+        }
     }
     
 }
