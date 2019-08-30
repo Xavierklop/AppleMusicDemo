@@ -9,9 +9,11 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isExplicit" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewDestinationURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SongEntity" positionX="311.47265625" positionY="-10.87890625" width="128" height="180"/>
+        <element name="SongEntity" positionX="311.47265625" positionY="-10.87890625" width="128" height="210"/>
     </elements>
 </model>

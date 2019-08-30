@@ -153,12 +153,21 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
         }
         // test
         setUpFetchedReultsContoller()
-        let results = fetchedResultsController.fetchedObjects as! [SongEntity]
+        guard let results = fetchedResultsController.fetchedObjects else {
+            print("No results in fetchedResultsController.fetchedObjects")
+            return
+        }
         
         if let index = download?.songPreView.index {
             // test
             results.forEach {
-                $0
+                if let urlString = $0.previewURL {
+                    if urlString == String(describing: sourceURL) {
+                        print("find songEntity")
+                        $0.previewDestinationURL = String(describing: destinationURL)
+                        print("destinationURL is \n\($0.previewDestinationURL)")
+                    }
+                }
             }
             
             DispatchQueue.main.async { [weak self] in

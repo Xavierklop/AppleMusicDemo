@@ -86,6 +86,7 @@ extension AlbumDetailDataSource: SongCellDelegate {
             songEntity.trackTime = Int32(song.trackTime)
             songEntity.artistName = song.artistName
             songEntity.albumName = song.albumName
+            songEntity.previewURL = String(describing: song.previewUrl)
             if let imageData = imageData {
                     songEntity.artworkData = imageData
             }
