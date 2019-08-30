@@ -9,12 +9,15 @@
 import UIKit
 import AVFoundation
 import AVKit
+import CoreData
 
 class AlbumDetailController: UITableViewController {
     
     var dataSource = AlbumDetailDataSource(songs: [])
     var dataController: DataController!
     let previewDownloader = PreviewDownloader()
+    // test
+    var fetchedResultsController: NSFetchedResultsController<SongEntity>!
     
     lazy var downloadsSession: URLSession = {
         let configuration = URLSessionConfiguration.background(withIdentifier:
@@ -50,11 +53,25 @@ class AlbumDetailController: UITableViewController {
         previewDownloader.downloadsSession = downloadsSession
         dataSource.previewDownloader = previewDownloader
         dataSource.tableView = tableView
-        
         tableView.dataSource = dataSource
         
         if let album = album {
             configure(with: album)
+        }
+    }
+    
+    // test
+    fileprivate func setUpFetchedReultsContoller() {
+        let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
+        let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescription]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+//        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("The fetch could not performed: \(error.localizedDescription).")
         }
     }
     
@@ -134,12 +151,22 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
         } catch {
             print("Could not copy file to disk: \(error.localizedDescription)")
         }
+        // test
+        setUpFetchedReultsContoller()
+        let results = fetchedResultsController.fetchedObjects as! [SongEntity]
         
         if let index = download?.songPreView.index {
+            // test
+            results.forEach {
+                $0
+            }
+            
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
             }
         }
+        // test
+        fetchedResultsController = nil
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

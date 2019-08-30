@@ -16,7 +16,6 @@ class DownloadedSongController: UITableViewController {
     }
     
     var dataController: DataController!
-    
     var dataScource = DownloadedSongDataSource()
     var fetchedResultsController: NSFetchedResultsController<SongEntity>!
     
