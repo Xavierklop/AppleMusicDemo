@@ -24,12 +24,16 @@ class DownloadedSongController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Downloaded Songs"
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setUpFetchedReultsContoller()
         tableView.dataSource = dataScource
         dataScource.dataController = dataController
         dataScource.tableView = tableView
         dataScource.fetchedResultsController = fetchedResultsController
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,10 +52,8 @@ class DownloadedSongController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // test
-        print("\nBefore get songEntity\n")
         let songEntity = fetchedResultsController.object(at: indexPath)
-        print("\nAfter get songEntity\n")
+
         playDownload(songEntity)
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -79,8 +81,6 @@ class DownloadedSongController: UITableViewController {
             print("songEntity's previewDestinationURL is nil!")
             return
         }
-        // test
-        print("urlString is \(urlString)")
         
         if let url = URL(string: urlString) {
             let player = AVPlayer(url: url)

@@ -16,7 +16,6 @@ class AlbumDetailController: UITableViewController {
     var dataSource = AlbumDetailDataSource(songs: [])
     var dataController: DataController!
     let previewDownloader = PreviewDownloader()
-    // test
     var fetchedResultsController: NSFetchedResultsController<SongEntity>!
     
     lazy var downloadsSession: URLSession = {
@@ -48,7 +47,6 @@ class AlbumDetailController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         dataSource.dataController = dataController
         previewDownloader.downloadsSession = downloadsSession
         dataSource.previewDownloader = previewDownloader
@@ -59,8 +57,11 @@ class AlbumDetailController: UITableViewController {
             configure(with: album)
         }
     }
-    
-    // test
+
+    override func viewDidDisappear(_ animated: Bool) {
+        self.downloadsSession.invalidateAndCancel()
+    }
+
     fileprivate func setUpFetchedReultsContoller() {
         let fetchRequest: NSFetchRequest<SongEntity> = SongEntity.fetchRequest()
         let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -139,8 +140,6 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
         downloadPreview = download
         
         let destinationURL = localFilePath(for: sourceURL)
-        // test
-        print("destinationURL is \(destinationURL)")
         
         let fileManger = FileManager.default
         try? fileManger.removeItem(at: destinationURL)
@@ -151,7 +150,7 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
         } catch {
             print("Could not copy file to disk: \(error.localizedDescription)")
         }
-        // test
+        
         setUpFetchedReultsContoller()
         guard let results = fetchedResultsController.fetchedObjects else {
             print("No results in fetchedResultsController.fetchedObjects")
@@ -159,13 +158,10 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
         }
         
         if let index = download?.songPreView.index {
-            // test
             results.forEach {
                 if let urlString = $0.previewURL {
                     if urlString == String(describing: sourceURL) {
-                        print("find songEntity")
                         $0.previewDestinationURL = String(describing: destinationURL)
-                        print("destinationURL is \n\($0.previewDestinationURL)")
                         
                         do {
                             try dataController.viewContext.save()
@@ -180,7 +176,7 @@ extension AlbumDetailController: URLSessionDownloadDelegate {
                 self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
             }
         }
-        // test
+        
         fetchedResultsController = nil
     }
     

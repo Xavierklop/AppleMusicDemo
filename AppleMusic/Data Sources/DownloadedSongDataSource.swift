@@ -34,9 +34,7 @@ class DownloadedSongDataSource: NSObject, UITableViewDataSource {
         if let artworkData = songEntity.artworkData {
             downloadedSongCell.artworkView.image = UIImage(data: artworkData)
         }
-        // test
-        print("songEntity destinationURL is \(songEntity.previewDestinationURL)")
-        
+                
         return downloadedSongCell
     }
     
