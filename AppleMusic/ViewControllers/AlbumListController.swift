@@ -55,10 +55,20 @@ class AlbumListController: UITableViewController {
         let albumDetailController = segue.destination as! AlbumDetailController
         
         albumDetailController.dataController = dataController
-        ItunesClient.lookupAlbum(selectedAlbum ,by: selectedAlbum.id) { (album, error) in
-            albumDetailController.album = album
+        ItunesClient.lookupAlbum(selectedAlbum ,by: selectedAlbum.id) {[weak self] (album, error) in
+            if album != nil {
+                albumDetailController.album = album
+            } else {
+                self?.showAlert(title: "Bad network connection", message: "Please try to search album later.")
+            }
         }
         
     }
     
+    // MARK: - Helper Methods
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
 }

@@ -46,9 +46,21 @@ class SearchResultsController: UITableViewController {
         let albumListController = segue.destination as! AlbumListController
         
         albumListController.dataController = dataController
-        ItunesClient.lookupArtist(by: artist.id) { (artist, error) in
-            albumListController.artist = artist
+        ItunesClient.lookupArtist(by: artist.id) {[weak self] (artist, error) in
+            if artist != nil {
+                albumListController.artist = artist
+            } else {
+                self?.showAlert(title: "Bad network connection", message: "Please try to search artist later.")
+            }
+            
         }
+    }
+    
+    // MARK: - Helper Methods
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
