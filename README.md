@@ -32,6 +32,7 @@ The DownloadedSongController display all downloaded song's preview. The user can
 - Use URLSession to manager all API request and download audio and image in background.
 - Use Decodable to parse JSON.
 - Use Core Data to persistent song infomation, image. 
+- All changes to the downloaded song can be automatically made persistent.
 - The audio files are storing in the local file system.
 - Use AVPlayerViewController to play audio.
 ## License
