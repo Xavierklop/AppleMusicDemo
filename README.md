@@ -14,6 +14,7 @@ The following features are provided by this app:
  1. Search for the artist's album by artist's name
  2. Select the relevant album to view the songs in the album.
  3. Download the essential information and preview of the song. The user can pause, resume, or cancel the preview being downloaded.
+ 5. The download progress of the song will be displayed.
  4. Play the preview of the artist's song by streaming or from offline.
 ### Main View controllers
 #### RootViewController
