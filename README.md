@@ -17,15 +17,15 @@ The following features are provided by this app:
  5. The download progress of the song's preview will be displayed.
  4. Play the preview of the artist's song by streaming or from offline.
 ## Main View controllers
-#### RootViewController
+### RootViewController
 The root view controller of the app. In the future, you can add the function of login here.
-#### SearchResultsController
+### SearchResultsController
 The user can access the search view by search item in the tab bar. The user can search artist by artist's name. After the user type artist's name in the search field the App will call iTunes API to get all matched results and display results in the table view. The user can select a artist to check all albums of the artist.
-#### AlbumListController
+### AlbumListController
 The AlbumListController display all albums of a artist. The user can select a album to check all songs of the album.
-#### AlbumDetailController
+### AlbumDetailController
 The AlbumDetailController display all songs of a album. The user can download, pause, resume or cancel a song's preview. The user can view the download process of preview. If the preview is downloaded, user can play the preview.
-#### DownloadedSongController
+### DownloadedSongController
 The DownloadedSongController display all downloaded song's preview. The user can play the preview offline here.
 ## Technical features
 - Use Itunes API to search artist, album and song.
