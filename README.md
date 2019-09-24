@@ -16,7 +16,7 @@ The following features are provided by this app:
  3. Download the essential information and preview of the song. The user can pause, resume, or cancel the preview being downloaded.
  5. The download progress of the song's preview will be displayed.
  4. Play the preview of the artist's song by streaming or from offline.
-### Main View controllers
+## Main View controllers
 #### RootViewController
 The root view controller of the app. In the future, you can add the function of login here.
 #### SearchResultsController
