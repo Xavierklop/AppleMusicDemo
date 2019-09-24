@@ -14,7 +14,7 @@ The following features are provided by this app:
  1. Search for the artist's album by artist's name
  2. Select the relevant album to view the songs in the album.
  3. Download the essential information and preview of the song. The user can pause, resume, or cancel the preview being downloaded.
- 5. The download progress of the song preview will be displayed.
+ 5. The download progress of the song's preview will be displayed.
  4. Play the preview of the artist's song by streaming or from offline.
 ### Main View controllers
 #### RootViewController
@@ -31,8 +31,8 @@ The DownloadedSongController display all downloaded song's preview. The user can
 - Use Itunes API to search artist, album and song.
 - Use URLSession to manager all API request and download audio and image in background.
 - Use Decodable to parse JSON.
-- Use Core Data to persistent song infomation, album image. 
-- All changes to the downloaded song can be automatically made persistent.
+- Use Core Data to persistent song's preview, album image and song infomation. 
+- All changes to the downloaded song's preview can be automatically made persistent.
 - The audio files are storing in the local file system.
 - Use AVPlayerViewController to play audio.
 ## License
