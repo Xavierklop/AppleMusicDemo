@@ -1,5 +1,5 @@
 # AppleMusicDemo
-The user can use AppleMusicDemo search artist, download and play the preview of the artist's song by streaming or from offline.
+The user can use AppleMusicDemo search for artist, download and play the preview of the artist's song by streaming or from offline.
 ## Prerequisites
 Xcode 10.2+
 
